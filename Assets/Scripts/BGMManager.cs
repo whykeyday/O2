@@ -12,13 +12,14 @@ public struct SceneBGM
 public class BGMManager : MonoBehaviour
 {
     public SceneBGM[] mappings;
+    public AudioClip defaultBGM;  // Default music for all scenes
     [Range(0f, 1f)] public float volume = 0.75f;
 
     private AudioSource _source;
 
     private void Awake()
     {
-        var existing = FindObjectsOfType<BGMManager>();
+        var existing = FindObjectsByType<BGMManager>(FindObjectsSortMode.None);
         if (existing.Length > 1)
         {
             Destroy(gameObject);
@@ -42,6 +43,7 @@ public class BGMManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // First, check for scene-specific BGM
         for (int i = 0; i < mappings.Length; i++)
         {
             if (mappings[i].clip != null && mappings[i].sceneName == scene.name)
@@ -53,6 +55,13 @@ public class BGMManager : MonoBehaviour
                 }
                 return;
             }
+        }
+        
+        // If no specific mapping found, use default BGM
+        if (defaultBGM != null && _source.clip != defaultBGM)
+        {
+            _source.clip = defaultBGM;
+            _source.Play();
         }
     }
 }

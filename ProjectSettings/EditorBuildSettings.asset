@@ -4,6 +4,54 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: f28868d08a1960741877f1da9956cee8
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: e85b8177895168c42bfa0c757d597e19
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: acffa758f6643b6488d077a9a76b7c6f
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 24ae1f17ba8bbc74daa4297fa841676f
+  - enabled: 1
+    path: Assets/Scenes/Bicycle Path/Bicycle1.unity
+    guid: 4e881f7684b77ab46941ada6d975200c
+  - enabled: 1
+    path: Assets/Scenes/Bicycle Path/Bicycle2.unity
+    guid: df5899e60422775478a6870979469963
+  - enabled: 1
+    path: Assets/Scenes/Bicycle Path/Bicycle3.unity
+    guid: 940e0e662a9b6cc42a2df628c62a64f1
+  - enabled: 1
+    path: Assets/Scenes/Fire Path/Fire1.unity
+    guid: 7c187685a9c5c5247b92398497624caf
+  - enabled: 1
+    path: Assets/Scenes/Fire Path/Fire2.unity
+    guid: 105a5f0edc3641143b9296499fcb5b65
+  - enabled: 1
+    path: Assets/Scenes/Fire Path/Fire3.unity
+    guid: 70c449e5291393e4a88c0cc8d8ac2ad8
+  - enabled: 1
+    path: Assets/Scenes/Human Path/Human1.unity
+    guid: 5efd065f79601b6428de941d39a89a6a
+  - enabled: 1
+    path: Assets/Scenes/Human Path/Human2.unity
+    guid: 825996ba81d63ec489cc51acc35e8f6b
+  - enabled: 1
+    path: Assets/Scenes/Human Path/Human3.unity
+    guid: 6b0fb3c88473739438a18089ea8d25e0
+  - enabled: 1
+    path: Assets/Scenes/Human Path/Human4.unity
+    guid: 26a48358dd2203640a7ad6ca6c131eca
+  - enabled: 1
+    path: Assets/Scenes/Sun Path/Sun1.unity
+    guid: efd4bb98e44f86545ba4b3e6e4971d48
+  - enabled: 1
+    path: Assets/Scenes/Sun Path/Sun2.unity
+    guid: 4fccaa7544aeab94ba353d310a2a615f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
