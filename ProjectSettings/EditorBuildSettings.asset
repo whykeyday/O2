@@ -5,27 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Template.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: f28868d08a1960741877f1da9956cee8
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: e85b8177895168c42bfa0c757d597e19
-  - enabled: 1
-    path: Assets/Scenes/Ending.unity
-    guid: acffa758f6643b6488d077a9a76b7c6f
-  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 24ae1f17ba8bbc74daa4297fa841676f
   - enabled: 1
-    path: Assets/Scenes/Bicycle Path/Bicycle1.unity
-    guid: 4e881f7684b77ab46941ada6d975200c
+    path: Assets/Scenes/Main.unity
+    guid: e85b8177895168c42bfa0c757d597e19
   - enabled: 1
-    path: Assets/Scenes/Bicycle Path/Bicycle2.unity
-    guid: df5899e60422775478a6870979469963
+    path: Assets/Scenes/Sun Path/Sun1.unity
+    guid: efd4bb98e44f86545ba4b3e6e4971d48
   - enabled: 1
-    path: Assets/Scenes/Bicycle Path/Bicycle3.unity
-    guid: 940e0e662a9b6cc42a2df628c62a64f1
+    path: Assets/Scenes/Sun Path/Sun2.unity
+    guid: 4fccaa7544aeab94ba353d310a2a615f
   - enabled: 1
     path: Assets/Scenes/Fire Path/Fire1.unity
     guid: 7c187685a9c5c5247b92398497624caf
@@ -48,10 +45,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Human Path/Human4.unity
     guid: 26a48358dd2203640a7ad6ca6c131eca
   - enabled: 1
-    path: Assets/Scenes/Sun Path/Sun1.unity
-    guid: efd4bb98e44f86545ba4b3e6e4971d48
+    path: Assets/Scenes/Bicycle Path/Bicycle1.unity
+    guid: 4e881f7684b77ab46941ada6d975200c
   - enabled: 1
-    path: Assets/Scenes/Sun Path/Sun2.unity
-    guid: 4fccaa7544aeab94ba353d310a2a615f
+    path: Assets/Scenes/Bicycle Path/Bicycle2.unity
+    guid: df5899e60422775478a6870979469963
+  - enabled: 1
+    path: Assets/Scenes/Bicycle Path/Bicycle3.unity
+    guid: 940e0e662a9b6cc42a2df628c62a64f1
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: acffa758f6643b6488d077a9a76b7c6f
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0

@@ -14,6 +14,16 @@ public class UICursorHover : MonoBehaviour
 
     public void OnMouseExit()
     {
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        // Try to restore global cursor instead of setting to null
+        var globalCursor = FindObjectOfType<GlobalCursorManager>();
+        if (globalCursor != null)
+        {
+            globalCursor.RestoreGlobalCursor();
+        }
+        else
+        {
+            // Fallback: set to null if no global cursor manager exists
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
     }
 }
