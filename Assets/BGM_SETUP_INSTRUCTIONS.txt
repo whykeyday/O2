@@ -1,0 +1,69 @@
+===============================================
+   HOW TO ADD BGM.mp3 TO YOUR UNITY GAME
+===============================================
+
+STEP 1: CREATE AN AUDIO FOLDER
+-------------------------------
+1. In Unity's Project window, navigate to Assets folder
+2. Right-click in the Assets folder
+3. Select Create > Folder
+4. Name it "Audio" (or "Music")
+
+STEP 2: IMPORT YOUR BGM.mp3 FILE
+---------------------------------
+1. Locate your BGM.mp3 file on your computer
+2. Drag and drop BGM.mp3 into the "Audio" folder you just created
+3. Wait for Unity to import the file
+4. Click on BGM.mp3 in the Project window
+5. In the Inspector, check these settings:
+   - Force To Mono: Unchecked (for stereo music)
+   - Load In Background: Checked
+   - Preload Audio Data: Checked
+   - Compression Format: Vorbis (for smaller file size) or PCM (for best quality)
+   - Quality: 100 (or adjust to your preference)
+6. Click "Apply" at the bottom of the Inspector
+
+STEP 3: CREATE THE BGM MANAGER GAME OBJECT
+-------------------------------------------
+1. Open your first scene (Title.unity) in the Scenes folder
+2. In the Hierarchy window, right-click and select "Create Empty"
+3. Rename this new GameObject to "BGMManager"
+4. With BGMManager selected, go to the Inspector
+5. Click "Add Component"
+6. Search for "BGMManager" and add the script
+7. Click "Add Component" again
+8. Search for "Audio Source" and add it
+
+STEP 4: CONFIGURE THE AUDIO SOURCE
+-----------------------------------
+With BGMManager still selected in the Hierarchy:
+1. In the Inspector, find the Audio Source component
+2. Drag BGM.mp3 from the Project window into the "AudioClip" field
+3. Check these settings:
+   - Play On Awake: ✓ (checked)
+   - Loop: ✓ (checked)
+   - Volume: 0.5-0.8 (adjust to your preference)
+   - Pitch: 1
+   - Spatial Blend: 0 (2D sound)
+
+STEP 5: TEST THE BGM
+---------------------
+1. Press the Play button in Unity
+2. You should hear your BGM playing and looping
+3. Switch between scenes - the BGM should continue playing
+4. If you hear the music, congratulations! It's working!
+
+OPTIONAL: ADJUST VOLUME IN SPECIFIC SCENES
+-------------------------------------------
+If you want to control the BGM volume from code:
+- Use: FindObjectOfType<BGMManager>().SetVolume(0.5f);
+- To pause: FindObjectOfType<BGMManager>().Pause();
+- To resume: FindObjectOfType<BGMManager>().Resume();
+
+TROUBLESHOOTING
+---------------
+- No sound? Check your computer's volume and Unity's Audio Mixer
+- BGM stops between scenes? Make sure you only have ONE BGMManager in the first scene
+- Multiple BGMs playing? Delete extra BGMManager objects from other scenes
+
+===============================================

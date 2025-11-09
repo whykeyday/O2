@@ -1,67 +1,72 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public struct SceneBGM
-{
-    public string sceneName;
-    public AudioClip clip;
-}
-
-[RequireComponent(typeof(AudioSource))]
 public class BGMManager : MonoBehaviour
 {
-    public SceneBGM[] mappings;
-    public AudioClip defaultBGM;  // Default music for all scenes
-    [Range(0f, 1f)] public float volume = 0.75f;
+    private static BGMManager instance;
+    private AudioSource audioSource;
 
-    private AudioSource _source;
-
-    private void Awake()
+    void Awake()
     {
-        var existing = FindObjectsByType<BGMManager>(FindObjectsSortMode.None);
-        if (existing.Length > 1)
+        // Singleton pattern - ensures only one BGM manager exists
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-
-        _source = GetComponent<AudioSource>();
-        _source.playOnAwake = false;
-        _source.loop = true;
-        _source.volume = volume;
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // First, check for scene-specific BGM
-        for (int i = 0; i < mappings.Length; i++)
-        {
-            if (mappings[i].clip != null && mappings[i].sceneName == scene.name)
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+            
+            // Get or add AudioSource component
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
             {
-                if (_source.clip != mappings[i].clip)
-                {
-                    _source.clip = mappings[i].clip;
-                    _source.Play();
-                }
-                return;
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            
+            // Configure audio source for looping BGM
+            audioSource.loop = true;
+            audioSource.playOnAwake = true;
+            
+            // Start playing if not already playing
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
             }
         }
-        
-        // If no specific mapping found, use default BGM
-        if (defaultBGM != null && _source.clip != defaultBGM)
+        else
         {
-            _source.clip = defaultBGM;
-            _source.Play();
+            // Destroy duplicate BGM managers
+            Destroy(gameObject);
+        }
+    }
+
+    // Optional: Methods to control BGM
+    public void SetVolume(float volume)
+    {
+        if (audioSource != null)
+        {
+            audioSource.volume = Mathf.Clamp01(volume);
+        }
+    }
+
+    public void Pause()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Pause();
+        }
+    }
+
+    public void Resume()
+    {
+        if (audioSource != null)
+        {
+            audioSource.UnPause();
+        }
+    }
+
+    public void Stop()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop();
         }
     }
 }

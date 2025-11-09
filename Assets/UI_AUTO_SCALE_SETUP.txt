@@ -1,0 +1,180 @@
+===============================================
+   UI自动缩放设置指南
+   UI AUTO-SCALE SETUP GUIDE
+===============================================
+
+问题 PROBLEM:
+- UI太大，游戏窗口需要滚动才能看到全部内容
+- UI is too large, requiring scrolling in the game window
+- 窗口resize时UI不会自动缩放
+- UI doesn't scale when resizing window
+
+解决方案 SOLUTION:
+使用Canvas Scaler让UI根据窗口大小自动缩放
+Use Canvas Scaler to automatically scale UI based on window size
+
+===============================================
+方法1：手动设置 (推荐 RECOMMENDED)
+===============================================
+
+步骤 STEPS:
+
+1. 打开场景 Open Scene
+   - 打开 Main.unity（或任何需要修复的场景）
+   - Open Main.unity (or any scene that needs fixing)
+
+2. 选择Canvas对象 Select Canvas Object
+   - 在Hierarchy窗口中找到并选择 "Canvas"
+   - Find and select "Canvas" in the Hierarchy window
+
+3. 添加Canvas Scaler组件 Add Canvas Scaler Component
+   - 在Inspector中，点击 "Add Component"
+   - In the Inspector, click "Add Component"
+   - 搜索并添加 "Canvas Scaler"
+   - Search for and add "Canvas Scaler"
+
+4. 配置Canvas Scaler设置 Configure Canvas Scaler Settings
+   在Inspector的Canvas Scaler组件中设置：
+   In the Canvas Scaler component in Inspector, set:
+
+   ✓ UI Scale Mode: Scale With Screen Size
+   
+   ✓ Reference Resolution: 
+     - 1920 x 1080 (推荐，适合大多数情况)
+     - 1920 x 1080 (recommended, works for most cases)
+     或者 or
+     - 1280 x 720 (如果UI仍然太大)
+     - 1280 x 720 (if UI is still too large)
+   
+   ✓ Screen Match Mode: Match Width Or Height
+   
+   ✓ Match: 0.5 
+     (0 = 宽度优先, 1 = 高度优先, 0.5 = 平衡)
+     (0 = width priority, 1 = height priority, 0.5 = balanced)
+
+5. 测试 Test
+   - 按Play按钮运行游戏
+   - Press Play button to run the game
+   - 尝试调整Game窗口大小
+   - Try resizing the Game window
+   - UI应该自动缩放以适应窗口
+   - UI should automatically scale to fit the window
+
+===============================================
+方法2：使用自动脚本 (更灵活 MORE FLEXIBLE)
+===============================================
+
+步骤 STEPS:
+
+1. 选择Canvas Select Canvas
+   - 在Hierarchy中选择Canvas对象
+   - Select Canvas object in Hierarchy
+
+2. 添加UIAutoScaler脚本 Add UIAutoScaler Script
+   - Inspector > Add Component
+   - 搜索 "UIAutoScaler" 并添加
+   - Search for "UIAutoScaler" and add it
+
+3. 调整参数 Adjust Parameters
+   在UIAutoScaler组件中：
+   In the UIAutoScaler component:
+
+   📐 Reference Resolution (参考分辨率):
+      - 默认 Default: 1920 x 1080
+      - 如果UI太大，改为 If UI too large, change to: 1280 x 720
+      - 如果UI太小，改为 If UI too small, change to: 2560 x 1440
+
+   🎚️ Match Width Or Height (匹配模式):
+      - 0.0 = 完全匹配宽度 (横屏游戏)
+              Fully match width (landscape games)
+      - 0.5 = 平衡匹配 (推荐)
+              Balanced (recommended)
+      - 1.0 = 完全匹配高度 (竖屏游戏)
+              Fully match height (portrait games)
+
+4. 运行测试 Run and Test
+   - 点击Play
+   - Click Play
+   - 调整Game窗口大小查看效果
+   - Resize Game window to see the effect
+
+===============================================
+构建设置 BUILD SETTINGS (重要!)
+===============================================
+
+为了让窗口可以resize，需要设置构建选项：
+To allow window resizing, configure build settings:
+
+1. File > Build Settings
+2. Player Settings... 按钮
+3. Resolution and Presentation 部分：
+   Resolution and Presentation section:
+
+   ✓ Fullscreen Mode: Windowed
+   ✓ Resizable Window: ✓ (勾选 Check this!)
+   ✓ Default Screen Width: 1280 (或您想要的默认宽度)
+   ✓ Default Screen Height: 720 (或您想要的默认高度)
+
+4. 保存并构建 Save and Build
+
+===============================================
+常见问题解决 TROUBLESHOOTING
+===============================================
+
+Q: UI仍然太大，需要滚动
+A: UI is still too large, needs scrolling
+
+解决 Solution:
+- 降低Reference Resolution (例如改为 1280x720 或 1024x768)
+- Lower Reference Resolution (e.g., change to 1280x720 or 1024x768)
+- 或增加Match值接近1.0（优先适应高度）
+- Or increase Match value closer to 1.0 (prioritize height fitting)
+
+---
+
+Q: 窗口resize时UI没有变化
+A: Window resizing doesn't change UI
+
+解决 Solution:
+- 确认Canvas Scaler的UI Scale Mode是 "Scale With Screen Size"
+- Confirm Canvas Scaler's UI Scale Mode is "Scale With Screen Size"
+- 确认Build Settings中Resizable Window已勾选
+- Confirm Resizable Window is checked in Build Settings
+
+---
+
+Q: UI缩放后文字模糊
+A: Text is blurry after scaling
+
+解决 Solution:
+- 在TextMeshPro组件中启用 "Enable Auto Sizing"
+- Enable "Enable Auto Sizing" in TextMeshPro component
+- 或提高TextMeshPro的字体Atlas分辨率
+- Or increase TextMeshPro font Atlas resolution
+
+---
+
+Q: 不同场景UI大小不一致
+A: UI size inconsistent across scenes
+
+解决 Solution:
+- 在所有场景的Canvas上应用相同的Canvas Scaler设置
+- Apply same Canvas Scaler settings to Canvas in all scenes
+- 或使用UIAutoScaler脚本并保持参数一致
+- Or use UIAutoScaler script with consistent parameters
+
+===============================================
+推荐设置 RECOMMENDED SETTINGS
+===============================================
+
+对于大多数游戏 For most games:
+- Reference Resolution: 1920 x 1080
+- Match: 0.5
+- UI Scale Mode: Scale With Screen Size
+
+对于UI内容特别多的游戏 For games with lots of UI:
+- Reference Resolution: 1280 x 720 或 1024 x 768
+- Match: 0.7 - 1.0 (更适应高度)
+- UI Scale Mode: Scale With Screen Size
+
+===============================================
