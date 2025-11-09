@@ -51,15 +51,4 @@ public class ChangePageSCR : MonoBehaviour
 
         SceneManager.LoadScene(option4);
     }
-
-    public void gotoTitle()
-    {
-        // Reset all progress when returning to title
-        StaticData.bicyclePath = false;
-        StaticData.firePath = false;
-        StaticData.humanPath = false;
-        StaticData.sunPath = false;
-        
-        SceneManager.LoadScene("Title");
-    }
 }
